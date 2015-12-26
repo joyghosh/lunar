@@ -1,4 +1,4 @@
-package com.joy.inputsplit;
+package com.joy.ingest.inputsplit;
 
 import java.io.DataInput;
 import java.io.DataOutput;

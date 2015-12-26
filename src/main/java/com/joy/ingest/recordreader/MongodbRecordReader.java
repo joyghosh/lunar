@@ -1,4 +1,4 @@
-package com.joy.recordreader;
+package com.joy.ingest.recordreader;
 
 import java.io.IOException;
 

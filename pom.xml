@@ -11,6 +11,7 @@
   	<junit.version></junit.version>
   	<hadoop-common.version>2.7.1</hadoop-common.version>
   	<hadoop-core.version>1.2.1</hadoop-core.version>
+  	<jedis.version>2.7.3</jedis.version>
   </properties>
   
   <dependencies>
@@ -33,6 +34,13 @@
 		<groupId>org.apache.hadoop</groupId>
 		<artifactId>hadoop-core</artifactId>
 		<version>${hadoop-core.version}</version>
+	</dependency>
+	
+	<!-- Jedis -->
+	<dependency>
+		<groupId>redis.clients</groupId>
+		<artifactId>jedis</artifactId>
+		<version>${jedis.version}</version>
 	</dependency>
   </dependencies>
 </project>
