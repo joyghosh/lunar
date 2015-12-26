@@ -7,6 +7,12 @@
   <version>1.0-SNAPSHOT</version>
   <name>lunar</name>
   <url>http://maven.apache.org</url>
+  <properties>
+  	<junit.version></junit.version>
+  	<hadoop-common.version>2.7.1</hadoop-common.version>
+  	<hadoop-core.version>1.2.1</hadoop-core.version>
+  </properties>
+  
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -14,5 +20,19 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    
+    <!-- Apache hadoop common-->
+    <dependency>
+		<groupId>org.apache.hadoop</groupId>
+		<artifactId>hadoop-common</artifactId>
+		<version>${hadoop-common.version}</version>
+	</dependency>
+	
+	<!-- Apache hadoop core -->
+	<dependency>
+		<groupId>org.apache.hadoop</groupId>
+		<artifactId>hadoop-core</artifactId>
+		<version>${hadoop-core.version}</version>
+	</dependency>
   </dependencies>
 </project>

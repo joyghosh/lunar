@@ -1,3 +1,6 @@
-#ide related files.
+#IDE specific.
 .classpath
 .project
+
+#compiled and build specific.
+target/
