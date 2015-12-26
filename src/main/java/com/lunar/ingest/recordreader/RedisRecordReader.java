@@ -1,4 +1,4 @@
-package com.joy.ingest.recordreader;
+package com.lunar.ingest.recordreader;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -12,7 +12,7 @@ import org.apache.log4j.Logger;
 
 import redis.clients.jedis.Jedis;
 
-import com.joy.ingest.inputsplit.RedisInputSplit;
+import com.lunar.ingest.inputsplit.RedisInputSplit;
 
 public class RedisRecordReader extends RecordReader<Text, Text> {
 	

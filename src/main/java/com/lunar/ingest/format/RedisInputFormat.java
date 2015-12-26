@@ -1,4 +1,4 @@
-package com.joy.ingest.format;
+package com.lunar.ingest.format;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,8 +12,8 @@ import org.apache.hadoop.mapreduce.RecordReader;
 import org.apache.hadoop.mapreduce.TaskAttemptContext;
 import org.apache.log4j.Logger;
 
-import com.joy.ingest.inputsplit.RedisInputSplit;
-import com.joy.ingest.recordreader.RedisRecordReader;
+import com.lunar.ingest.inputsplit.RedisInputSplit;
+import com.lunar.ingest.recordreader.RedisRecordReader;
 
 public class RedisInputFormat extends InputFormat<Text, Text> {
 
