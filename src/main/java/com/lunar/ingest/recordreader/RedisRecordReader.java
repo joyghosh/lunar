@@ -18,11 +18,11 @@ public class RedisRecordReader extends RecordReader<Text, Text> {
 	
 	private static final Logger logger = Logger.getLogger(RedisRecordReader.class);
 	
-	private Iterator<Entry<String,String>> keyValueMapIter;
-	private Text key;
-	private Text value;
-	private float keyValuesProcessed, totalKeyValues;
-	private Entry<String, String> current;
+	private Iterator<Entry<String,String>> keyValueMapIter = null;
+	private Text key = new Text();
+	private Text value = new Text();
+	private float keyValuesProcessed = 0, totalKeyValues = 0;
+	private Entry<String, String> current = null;
 
 	@Override
 	public void close() throws IOException {
@@ -54,7 +54,7 @@ public class RedisRecordReader extends RecordReader<Text, Text> {
 	
 		logger.info("Connecting to "+host+" and reading from "+hashKey);
 		
-		Jedis jedis = new Jedis();
+		Jedis jedis = new Jedis(host);
 		jedis.connect();
 		jedis.getClient().setTimeoutInfinite();
 		

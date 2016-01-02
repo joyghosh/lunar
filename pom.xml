@@ -8,17 +8,22 @@
   <name>lunar</name>
   <url>http://maven.apache.org</url>
   <properties>
-  	<junit.version></junit.version>
+  	<jdk.version>1.7</jdk.version>
+  	<junit.version>3.8.1</junit.version>
   	<hadoop-common.version>2.7.1</hadoop-common.version>
   	<hadoop-core.version>1.2.1</hadoop-core.version>
+  	<hadoop-mapreduce.version>2.7.1</hadoop-mapreduce.version>
   	<jedis.version>2.7.3</jedis.version>
+  	<maven-assembly-plugin.version>2.6</maven-assembly-plugin.version>
+  	<maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
+  	<maven-eclipse-plugin.version>2.9</maven-eclipse-plugin.version>
   </properties>
   
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
     
@@ -30,11 +35,26 @@
 	</dependency>
 	
 	<!-- Apache hadoop core -->
-	<dependency>
+	<!--  <dependency>
 		<groupId>org.apache.hadoop</groupId>
 		<artifactId>hadoop-core</artifactId>
 		<version>${hadoop-core.version}</version>
+	</dependency> -->
+	
+	<!-- Apache hadoop map-reduce -->
+	<!--  <dependency>
+		<groupId>org.apache.hadoop</groupId>
+		<artifactId>hadoop-mapreduce</artifactId>
+		<version>${hadoop-mapreduce.version}</version>
+	</dependency> -->
+	
+	<!-- Apache hadoop client-core -->
+	<dependency>
+		<groupId>org.apache.hadoop</groupId>
+		<artifactId>hadoop-mapreduce-client-core</artifactId>
+		<version>2.7.1</version>
 	</dependency>
+	
 	
 	<!-- Jedis -->
 	<dependency>
@@ -43,4 +63,61 @@
 		<version>${jedis.version}</version>
 	</dependency>
   </dependencies>
+  
+  <build>
+  	<finalName>lunar</finalName>
+  	<plugins>
+  			<!-- download source code in Eclipse, best practice -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>${maven-eclipse-plugin.version}</version>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>false</downloadJavadocs>
+				</configuration>
+			</plugin>
+			
+			<!-- Set a compiler level -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+				</configuration>
+			</plugin>
+			
+			<!-- Maven Assembly Plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>${maven-assembly-plugin.version}</version>
+				<configuration>
+					<!-- get all project dependencies -->
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<!-- MainClass in mainfest make a executable jar -->
+					<archive>
+					  <manifest>
+						<mainClass>com.lunar.App</mainClass>
+					  </manifest>
+					</archive>
+
+				</configuration>
+				<executions>
+				  <execution>
+					<id>make-assembly</id>
+                                        <!-- bind to the packaging phase -->
+					<phase>package</phase> 
+					<goals>
+						<goal>single</goal>
+					</goals>
+				  </execution>
+				</executions>
+			</plugin>
+  	</plugins>
+  </build>
 </project>

@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.InputFormat;
 import org.apache.hadoop.mapreduce.InputSplit;
+import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.JobContext;
 import org.apache.hadoop.mapreduce.RecordReader;
 import org.apache.hadoop.mapreduce.TaskAttemptContext;
@@ -20,6 +21,32 @@ public class RedisInputFormat extends InputFormat<Text, Text> {
 	public static final String REDIS_HOSTS_CONF = "mapred.redisinputformat.hosts";
 	public static final String REDIS_HASH_KEY_CONF = "mapred.redisinputformat.key";
 	private static final Logger logger = Logger.getLogger(RedisInputFormat.class);
+	
+	
+	/**
+	 * Sets the CSV string of Redis hosts.
+	 * 
+	 * @param job
+	 *            The job conf
+	 * @param hosts
+	 *            The CSV string of Redis hosts
+	 */
+	public static void setRedisHosts(Job job, String hosts) {
+		job.getConfiguration().set(REDIS_HOSTS_CONF, hosts);
+	}
+
+	/**
+	 * Sets the key of the hash to write to.
+	 * 
+	 * @param job
+	 *            The job conf
+	 * @param hashKey
+	 *            The name of the hash key
+	 */
+	public static void setRedisHashKey(Job job, String hashKey) {
+		job.getConfiguration().set(REDIS_HASH_KEY_CONF, hashKey);
+	}
+
 	
 	@Override
 	public RecordReader<Text, Text> createRecordReader(InputSplit split,
